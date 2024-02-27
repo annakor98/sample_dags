@@ -29,7 +29,7 @@ class TelegramNotifier(BaseNotifier):
             chat_id=self.chat_id,
         )
 
-        telegram_hook.send_message(message_template)
+        telegram_hook.send_message({"text": message_template})
 
 
 with DAG(
