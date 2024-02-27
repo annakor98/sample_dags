@@ -20,7 +20,7 @@ with DAG(
         task_id="hello",
         python_callable=hello_world,
         op_kwargs={"name": "Anya"},
-        schedule_intreval="@once",
+        schedule_interval="@once",
     )
 
     end = EmptyOperator(task_id="end")
