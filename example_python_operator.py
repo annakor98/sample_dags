@@ -23,7 +23,7 @@ with DAG(
     send_message_telegram_task = TelegramOperator(
         task_id='send_message_telegram',
         telegram_conn_id='6435473792:AAEZwLd-Lq3Y8pZziLaKQ4X6hcx0bmO4un8',
-        #chat_id='-3222103937',
+        chat_id='-4177695418',
         text='Hello from Airflow!',
         dag=dag,
     )
@@ -31,4 +31,5 @@ with DAG(
     end = EmptyOperator(task_id="end")
 
     start >> send_message_telegram_task >> end
+
 
