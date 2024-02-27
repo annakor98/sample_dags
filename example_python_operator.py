@@ -20,7 +20,7 @@ class TelegramNotifier(BaseNotifier):
 
         message_template = (f"Dag name: `{dag_name}` \n"
                             f"Task id: `{task_id}` \n"
-                            f"Task State: `🔴{task_state}🔴` \n"
+                            f"Task State: `{task_state}` \n"
                             )
 
         telegram_hook = TelegramHook(
