@@ -10,6 +10,7 @@ with DAG(
     default_args={
         "owner": "annakor",
     },
+    schedule_interval="@once",
     max_active_tasks=1,
     max_active_runs=1,
     tags=["custom_dag"],
@@ -20,7 +21,6 @@ with DAG(
         task_id="hello",
         python_callable=hello_world,
         op_kwargs={"name": "Anya"},
-        schedule_interval="@once",
     )
 
     end = EmptyOperator(task_id="end")
