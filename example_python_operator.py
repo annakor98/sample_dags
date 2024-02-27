@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.empty import EmptyOperator
+import pendulum
 
 def hello_world(name):
     print(f"Hello, {name}!")
@@ -11,6 +12,7 @@ with DAG(
         "owner": "annakor",
     },
     schedule_interval="@once",
+    start_date=pendulum.today('Europe/Moscow').add(days=-1),
     max_active_tasks=1,
     max_active_runs=1,
     tags=["custom_dag"],
