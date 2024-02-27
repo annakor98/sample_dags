@@ -5,7 +5,7 @@ import pendulum
 from airflow.providers.telegram.operators.telegram import TelegramOperator
 from airflow.notifications.basenotifier import BaseNotifier
 from airflow.providers.telegram.hooks.telegram import TelegramHook
-
+from airflow.models import Variable
 
 class TelegramNotifier(BaseNotifier):
     def __init__(self, token, chat_id, telegram_conn_id="telegram_default"):
@@ -43,20 +43,20 @@ with DAG(
     max_active_runs=1,
     tags=["custom_dag"],
     on_success_callback=TelegramNotifier(
-        token='6435473792:AAEZwLd-Lq3Y8pZziLaKQ4X6hcx0bmO4un8',
-        chat_id='-4177695418'
+        token=Variable.get("bot_token"),
+        chat_id=Variable.get("chat_id"),
     ),
     on_failure_callback=TelegramNotifier(
-        token='6435473792:AAEZwLd-Lq3Y8pZziLaKQ4X6hcx0bmO4un8',
-        chat_id='-4177695418'
+        token=Variable.get("bot_token"),
+        chat_id=Variable.get("chat_id"),
     )
 ) as dag:
     start = EmptyOperator(task_id="start")
 
     send_message_telegram_task = TelegramOperator(
         task_id='send_message_telegram',
-        token='6435473792:AAEZwLd-Lq3Y8pZziLaKQ4X6hcx0bmO4un8',
-        chat_id='-4177695418',
+        token=Variable.get("bot_token"),
+        chat_id=Variable.get("chat_id"),
         text='Hello from Airflow!',
         dag=dag,
     )
