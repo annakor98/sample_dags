@@ -12,7 +12,7 @@ with DAG(
     },
     max_active_tasks=1,
     max_active_runs=1,
-    tag=["custom_dag"],
+    tags=["custom_dag"],
 ) as dag:
     start = EmptyOperator(task_id="start")
 
