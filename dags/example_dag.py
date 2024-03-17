@@ -23,7 +23,7 @@ with DAG(
         docker_url='tcp://docker-proxy:2375',
         network_mode="bridge",
         command="echo Hello",
-        api_verison="auto",
+        api_version="auto",
     )
 
     end = EmptyOperator(task_id="end")
